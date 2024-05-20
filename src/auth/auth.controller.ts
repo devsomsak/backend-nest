@@ -6,6 +6,12 @@ import { Request } from 'express';
 import { JwtAuthGuard } from './guards/jwt.guard'
 import { LocalGuard } from './guards/local.guard';
 
+declare module 'express' {
+  interface Request {
+    user?: any;
+  }
+}
+
 
 
 @Controller('auth')
@@ -27,6 +33,7 @@ export class AuthController {
   status(@Req() req: Request){
     console.log('Inside AuthController status method')
     console.log(req.user);
+    return req.user
   }
 
 }
